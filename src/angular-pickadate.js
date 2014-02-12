@@ -1,4 +1,5 @@
-;(function(angular){
+'use strict';
+(function(angular){
   var indexOf = [].indexOf || function(item) {
     for (var i = 0, l = this.length; i < l; i++) {
       if (i in this && this[i] === item) return i;
@@ -46,6 +47,7 @@
         require: 'ngModel',
         scope: {
           date: '=ngModel',
+          dateClasses: '=',
           minDate: '=',
           maxDate: '=',
           disabledDates: '='
@@ -81,6 +83,7 @@
           var minDate       = scope.minDate && dateUtils.stringToDate(scope.minDate),
               maxDate       = scope.maxDate && dateUtils.stringToDate(scope.maxDate),
               disabledDates = scope.disabledDates || [],
+              dateClasses   = scope.dateClasses || {},
               currentDate   = new Date();
 
           scope.dayNames    = $locale.DATETIME_FORMATS['SHORTDAY'];
@@ -125,6 +128,10 @@
                 className += ' pickadate-today';
               }
 
+              if (dateClasses[date]) {
+                className += ' ' + dateClasses[date];
+              }
+
               dates.push({date: date, className: className});
             }
 
@@ -137,6 +144,7 @@
           };
 
           ngModel.$render = function () {
+            var date = scope.date;
             if ((date = ngModel.$modelValue) && (indexOf.call(disabledDates, date) === -1)) {
               scope.currentDate = currentDate = dateUtils.stringToDate(date);
             } else if (date) {

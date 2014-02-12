@@ -11,11 +11,17 @@
         padding: 10px;
         text-align: center;
       }
+      .purple {
+        background: #a7f;
+      }
+      .yellow {
+        background: yellow;
+      }
     </style>
   </head>
   <body ng-app="testApp" id="ng-app" ng-controller="TestController">
     <div class="container">
-      <div pickadate ng-model="date" min-date="minDate" max-date="maxDate" disabled-dates='disabledDates'></div>
+      <div pickadate ng-model="date" min-date="minDate" max-date="maxDate" disabled-dates='disabledDates' date-classes="dateClasses"></div>
 
       <div class="selected-date">
         Selected date is {{date || '(no date selected)'}}
@@ -28,10 +34,14 @@
       angular.module('testApp', ['pickadate']);
 
       function TestController($scope, dateFilter) {
-        $scope.date = '2013-11-26';
-        $scope.minDate = '2013-10-05';
-        $scope.maxDate = '2014-12-04';
-        $scope.disabledDates = ['2013-11-19', '2013-11-30'];
+        $scope.date = '2014-02-1';
+        $scope.minDate = '2013-02-05';
+        $scope.maxDate = '2015-02-04';
+        $scope.disabledDates = ['2014-02-19', '2014-03-01'];
+        $scope.dateClasses = {
+          '2014-02-01': 'purple',
+          '2014-02-10': 'yellow'
+        };
       }
     </script>
   </body>
