@@ -1,0 +1,9 @@
+{
+  "name": "angular-pickadate",
+  "description": "A simple and fluid inline datepicker for AngularJS with no extra dependencies.",
+  "main": ["src/angular-pickadate.js", "src/angular-pickadate.css"],
+  "license": "MIT",
+  "dependencies": {
+    "angular": ">=1.2.10"
+  }
+}
